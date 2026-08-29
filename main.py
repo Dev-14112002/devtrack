@@ -27,26 +27,27 @@ while True:
         print("2. View Topics")
         print("3. Back")
         ch = int(input("Enter your choice: \n"))
-        if ch == 1:
+        if ch == 1:  # Add Topic
             while True:
-                d = {}
                 a = input("Enter topic name: ")
                 b = input("Enter difficulty: ")
-                d.update({a: b})
-                lot.append(d)
-                print("Topic added")
-                print(lot)
-                c = input("Do you want to enter another topic? \n")
-                if c.lower() == "n":
-                    break
-        elif ch == 2:
+                c = input("Enter status: ")
+                if c not in ("Not Started", "In Progress", "Completed"):
+                    print("Enter valid status")
+                else:
+                    lot.append([a, b, c])
+                    print("Topic added")
+                    print(lot)
+                    c = input("Do you want to enter another topic? \n")
+                    if c.lower() == "n":
+                        break
+        elif ch == 2:  # View Topics
             if len(lot) == 0:
                 print("No learning topics added yet.\n")
             else:
                 print("========== LEARNING TOPICS ==========")
                 for i in range(0, len(lot)):
-                    for key, value in lot[i].items():
-                        print(f"{i+1}. {key}  {value}\n")
+                    print(f"{i+1} {lot[i][0]} {lot[i][1]}  {lot[i][2]}\n")
                 continue
         else:
             continue
