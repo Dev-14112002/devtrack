@@ -6,6 +6,7 @@ print("========================================")
 
 ##GLOBAL VARIABLES
 lot = []
+lop = []
 
 
 ##FUNCTIONS
@@ -26,6 +27,8 @@ def open_dashboard():
             continue
         elif choice == 2:
             learning_topics()
+        elif choice == 3:
+            projects()
         elif choice == 7:
             print("Goodbye!")
             break
@@ -50,7 +53,7 @@ def learning_topics():
             else:
                 lot.append([a, b, c])
                 print("Topic added")
-                print(lot)
+                # print(lot)
                 c = input("Do you want to enter another topic? \n")
                 if c.lower() == "n":
                     return
@@ -64,6 +67,46 @@ def learning_topics():
                 print(f"{i+1} {lot[i][0]} {lot[i][1]}  {lot[i][2]}\n")
             return
     elif ch == 3:  # Back
+        return
+
+
+def projects():
+    print("========== PROJECTS ==========")
+    print("1. Add Project")
+    print("2. View Projects")
+    print("3. Back")
+    ch = int(input("Enter your choice"))
+    if ch == 1:
+        while True:
+            name = input("Enter the Project Name:")
+            desc = input("Enter the Project Description:")
+            tech = input("Enter the Project Technology:")
+            status = input("Enter the Project Status:")
+            if status not in ("Not Started", "In Progress", "Completed", "On Hold"):
+                print("Enter valid status")
+            else:
+                progress = int(input("Enter your Project Progress"))
+                if progress >= 0 and progress <= 100:
+                    print("Progress Validated!")
+                    lop.append([name, desc, tech, status, progress])
+                    print("Project Added!")
+                    n = input("Do you want to enter another Project")
+                    if n.lower() == "n":
+                        return
+                else:
+                    print("Enter valid Progress number in the range 0-100")
+    elif ch == 2:
+        if len(lop) == 0:
+            print("No projects added yet.\n")
+            return
+        else:
+            print("========== PROJECTS ==========")
+            for i in range(0, len(lop)):
+                print(f"{i + 1}. ", end="")
+                for j in range(0, len(lop[i])):
+                    print(f" {lop[i][j]}")
+            return
+    elif ch == 3:
         return
 
 
